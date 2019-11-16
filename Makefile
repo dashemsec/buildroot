@@ -779,6 +779,12 @@ endif
 	) >  $(TARGET_DIR)/usr/lib/os-release
 	ln -sf ../usr/lib/os-release $(TARGET_DIR)/etc
 
+	@$(call MESSAGE, "Signing the OPTEE CA's")
+	~/optee/optee_os/scripts/sign-ca.sh ~/optee/out-br/target/usr/bin/optee_example_hello_world ~/optee/out-br/target/usr/bin/optee_example_hello_world
+	~/optee/optee_os/scripts/sign-ca.sh ~/optee/out-br/target/usr/bin/optee_example_random ~/optee/out-br/target/usr/bin/optee_example_random
+	~/optee/optee_os/scripts/sign-ca.sh ~/optee/out-br/target/usr/bin/xtest ~/optee/out-br/target/usr/bin/xtest
+	~/optee/optee_os/scripts/sign-ca.sh ~/optee/out-br/target/usr/sbin/tee-supplicant ~/optee/out-br/target/usr/sbin/tee-supplicant
+
 	@$(call MESSAGE,"Sanitizing RPATH in target tree")
 	$(TOPDIR)/support/scripts/fix-rpath target
 
